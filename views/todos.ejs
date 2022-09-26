@@ -1,22 +1,35 @@
 <%- include("./partials/header.ejs") %>
-    <h1>Todos</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
-            </li>
-    <% }) %>    
-    </ul>
-
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
-
-    <a href="/logout">Logout</a>
-
-    <script src="js/main.js"></script>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+                <h1 class="title">Todos</h1>
+                <div class="content is-large">
+                    <% todos.forEach( el => { %>
+                            <div class="box">
+                                <span class='<%= el.completed === true ? 'has-text-light' : ''%>'><%= el.todo %></span>
+                                <button class="delete"></button>
+                            </div>
+                    <% }) %>
+                </div>
+                <h2 class="subtitle"><%= user.userName %> has <%= left %> things left to do.</h2>
+                <form class="box" action="/todos/createTodo" method='POST'>
+                    <div class="field">
+                        <label for="todoItem" class="label">Enter Todo Item</label>
+                        <div class="control">
+                            <input class="input" type="text"name='todoItem'>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="js/main.js"></script>
 <%- include("./partials/footer.ejs") %>
