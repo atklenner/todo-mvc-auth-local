@@ -7,7 +7,7 @@
                     <h1 class="title">Todos</h1>
                         <% todos.forEach( el => { %>
                             <div class="content is-large">
-                                <div class="box <%= el.completed ? "completed" : "todoItem" %>" data-id="<%= el._id %>">
+                                <div class="box <%- todoItemClass(el.completed, el.dateCreated) %>" data-id="<%= el._id %>">
                                     <div class="level">
                                         <span><%= el.todo %></span>
                                         <button class="delete is-large"></button>
