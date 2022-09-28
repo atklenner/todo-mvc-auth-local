@@ -3,30 +3,36 @@
     <div class="container">
         <div class="columns">
             <div class="column is-half is-offset-one-quarter">
-                <h1 class="title">Todos</h1>
-                <div class="content is-large">
-                    <% todos.forEach( el => { %>
-                            <div class="box">
-                                <span class='<%= el.completed === true ? 'has-text-light' : ''%>'><%= el.todo %></span>
-                                <button class="delete"></button>
+                <section class="section">
+                    <h1 class="title">Todos</h1>
+                        <% todos.forEach( el => { %>
+                            <div class="content is-large">
+                                <div class="box <%= el.completed ? "completed" : "todoItem" %>" data-id="<%= el._id %>">
+                                    <div class="level">
+                                        <span><%= el.todo %></span>
+                                        <button class="delete is-large"></button>
+                                    </div>
+                                </div>
                             </div>
-                    <% }) %>
-                </div>
-                <h2 class="subtitle"><%= user.userName %> has <%= left %> things left to do.</h2>
-                <form class="box" action="/todos/createTodo" method='POST'>
-                    <div class="field">
-                        <label for="todoItem" class="label">Enter Todo Item</label>
-                        <div class="control">
-                            <input class="input" type="text"name='todoItem'>
+                        <% }) %>
+                    <h2 class="subtitle"><%= user.userName %> has <%= left %> things left to do.</h2>
+                </section>
+                <section class="section">
+                    <form class="box" action="/todos/createTodo" method='POST'>
+                        <div class="field">
+                            <label for="todoItem" class="label">Enter Todo Item</label>
+                            <div class="control">
+                                <input class="input" type="text"name='todoItem'>
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-link">Submit</button>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-link">Submit</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <a href="/logout">Logout</a>
+                    </form>
+                    <a href="/logout">Logout</a>
+                </section>
             </div>
         </div>
     </div>

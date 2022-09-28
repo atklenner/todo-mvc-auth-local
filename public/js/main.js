@@ -1,6 +1,6 @@
-const deleteBtns = document.querySelectorAll(".del");
-const todoItems = document.querySelectorAll("span.not");
-const todoComplete = document.querySelectorAll("span.completed");
+const deleteBtns = document.querySelectorAll(".delete");
+const todoItems = document.querySelectorAll(".todoItem");
+const todoComplete = document.querySelectorAll(".completed");
 
 deleteBtns.forEach((el) => {
   el.addEventListener("click", deleteTodo);
@@ -15,7 +15,7 @@ todoComplete.forEach((el) => {
 });
 
 async function deleteTodo() {
-  const todoId = this.parentNode.dataset.id;
+  const todoId = this.parentNode.parentNode.dataset.id;
   try {
     const response = await fetch("todos/deleteTodo", {
       method: "delete",
@@ -33,7 +33,7 @@ async function deleteTodo() {
 }
 
 async function markComplete() {
-  const todoId = this.parentNode.dataset.id;
+  const todoId = this.dataset.id;
   try {
     const response = await fetch("todos/markComplete", {
       method: "put",
@@ -51,7 +51,7 @@ async function markComplete() {
 }
 
 async function markIncomplete() {
-  const todoId = this.parentNode.dataset.id;
+  const todoId = this.dataset.id;
   try {
     const response = await fetch("todos/markIncomplete", {
       method: "put",
